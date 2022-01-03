@@ -9,7 +9,7 @@ def multiply(a, b):
     return a*b
 
 
-res = add(2, 3)
+res = add(1, 4)
 print(res)
 
 
