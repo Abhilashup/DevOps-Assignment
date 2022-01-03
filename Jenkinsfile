@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'C:/Users/Admin/Desktop/Abhilash/DevOps/calc.py'
+                sh 'C:/ProgramData/Jenkins/.jenkins/workspace/Assignment/calc.py'
             }
         }
         stage('test') {
             steps {
-                sh 'C:/Users/Admin/Desktop/Abhilash/DevOps/test_calc.py'
+                sh 'C:/ProgramData/Jenkins/.jenkins/workspace/Assignment/test_calc.py'
             }
         }
     }
