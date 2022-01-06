@@ -1,16 +1,21 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('build') {
-            steps {
-                bat 'python calc.py'
-            }
+pipeline {  
+    environment {
+    registry = "abhilashup/calculator"
+    registryCredential = 'dockerhub'
+  }  
+  agent any  
+  stages {
+    stage('Build') {
+      steps{
+        script {
+          docker.build registry + ":latest"
         }
-        stage('test') {
-            steps {
-                bat 'python test_calc.py'
-            }
+      }
+    }
+    stage('Test'){
+        steps {
+            bat 'python test_calc.py'
         }
     }
+  }
 }
