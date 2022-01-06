@@ -17,5 +17,14 @@ pipeline {
             bat 'python test_calc.py'
         }
     }
+    stage('Archive'){
+        steps{
+            script {
+                docker.withRegistry( '', registryCredential){
+                dockerImage.push()
+                }
+            }
+        }
+    }
   }
 }
