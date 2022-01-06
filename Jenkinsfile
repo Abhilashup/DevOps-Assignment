@@ -8,7 +8,7 @@ pipeline {
     stage('Build') {
       steps{
         script {
-          docker.build registry + ":latest"
+          dockerImage = docker.build registry + ":latest"
         }
       }
     }
