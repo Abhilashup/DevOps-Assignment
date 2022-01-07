@@ -11,7 +11,7 @@ def multiply(a, b):
     return a*b
 
 
-#Checking if the function works
+#Checking if the function works properly
 res = add(1, 4)
 print(res)
 
