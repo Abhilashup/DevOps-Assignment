@@ -1,12 +1,18 @@
+#function to add numbers
 def add(a, b):
     return int(a)+int(b)
         
-
+#function to subtract numbers
 def subtract(a, b):
     return int(a)-int(b)
 
+#function to multiply numbers
 def multiply(a, b):
     return int(a)*int(b)
+
+
+
+
 
 if __name__ == '__main__':
     num1 = input('Enter first number: ')
@@ -23,7 +29,7 @@ if __name__ == '__main__':
        print(multiply(num1, num2))
 
     else:
-      print("Invalid Operation")
+       print("Invalid Operation")
     
     
 
