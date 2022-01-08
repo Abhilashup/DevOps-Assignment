@@ -1,0 +1,177 @@
+Started by user Abhilash U Prakash
+Obtained Jenkinsfile from git https://github.com/Abhilashup/DevOps-Assignment.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\Assignment_Pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\Assignment_Pipeline\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/Abhilashup/DevOps-Assignment.git # timeout=10
+Fetching upstream changes from https://github.com/Abhilashup/DevOps-Assignment.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.34.1.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/Abhilashup/DevOps-Assignment.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+Checking out Revision 14f30adde46fa88473b7c79b809c5c21bf97b390 (refs/remotes/origin/master)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 14f30adde46fa88473b7c79b809c5c21bf97b390 # timeout=10
+Commit message: "Final Update"
+ > git.exe rev-list --no-walk 3b9423bab43692c2505cb8037a1eb2ad108c5a86 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Assignment_Pipeline>docker build -t abhilashup/calculator:latest . 
+#2 [internal] load .dockerignore
+#2 sha256:be5458fb72b75129d29cc1c0addcd4c483ba1d1ed230b84cfc2e09816a0f34a1
+#2 transferring context: 2B 0.1s done
+#2 DONE 1.3s
+
+#1 [internal] load build definition from Dockerfile
+#1 sha256:8cdb87d304feff54ad9b3f9d9080840b672bb9debd71c58215df84e9ff849455
+#1 transferring dockerfile: 31B 0.5s done
+#1 DONE 2.6s
+
+#3 [internal] load metadata for docker.io/library/python:latest
+#3 sha256:25baba7cb1ff1faed5b407f213f787f42274cfec06d39ad674c6905f347a48f7
+#3 ...
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 sha256:26bd514ff5904e0fd4b159ea4b9db89344fadd90b72553a9c6daba767242e4b8
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:latest
+#3 sha256:25baba7cb1ff1faed5b407f213f787f42274cfec06d39ad674c6905f347a48f7
+#3 DONE 8.8s
+
+#5 [1/3] FROM docker.io/library/python@sha256:dbbfcbf95f6b596d2be1d8f3b368016619f78f829facf6f2e361bea1151794e5
+#5 sha256:ab5e124101ffa72309cf4a051d10afa7b1f7dc9e8b0b0ba424439bcfe36f75a0
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 sha256:5ce6a56893ecd5643ec3e1311fd604ef547cef4755d25f41408631af2b8e06be
+#6 transferring context: 24B 0.0s
+#6 transferring context: 23.73kB 0.6s done
+#6 DONE 1.7s
+
+#5 [1/3] FROM docker.io/library/python@sha256:dbbfcbf95f6b596d2be1d8f3b368016619f78f829facf6f2e361bea1151794e5
+#5 sha256:ab5e124101ffa72309cf4a051d10afa7b1f7dc9e8b0b0ba424439bcfe36f75a0
+#5 CACHED
+
+#7 [2/3] COPY . /usr/app/
+#7 sha256:d249b1f2799201903d212f02192b12a4f2b7d882f08771b169cac4816ea5cd33
+#7 DONE 2.7s
+
+#8 [3/3] WORKDIR /usr/app/
+#8 sha256:bfc582c432287658c5a377737b0e22afaf9452cd5efc80630b31386972909907
+#8 DONE 2.4s
+
+#9 exporting to image
+#9 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#9 exporting layers
+#9 exporting layers 2.5s done
+#9 writing image sha256:162bc1fad02738f739176ab15f28d18fdd42ea0725364b2215e448705d064672
+#9 writing image sha256:162bc1fad02738f739176ab15f28d18fdd42ea0725364b2215e448705d064672 0.1s done
+#9 naming to docker.io/abhilashup/calculator:latest 0.1s done
+#9 DONE 3.7s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Assignment_Pipeline>python test_calc.py 
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Archive)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u abhilashup -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account. 
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Assignment_Pipeline>docker tag abhilashup/calculator:latest abhilashup/calculator:latest 
+[Pipeline] isUnix
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\Assignment_Pipeline>docker push abhilashup/calculator:latest 
+The push refers to repository [docker.io/abhilashup/calculator]
+5f70bf18a086: Preparing
+6aacc61f1072: Preparing
+db8d0fe6cf95: Preparing
+00901a4c6fc7: Preparing
+7e7decd61f68: Preparing
+aedcb370b058: Preparing
+c3a0d593ed24: Preparing
+26a504e63be4: Preparing
+8bf42db0de72: Preparing
+31892cc314cb: Preparing
+11936051f93b: Preparing
+c3a0d593ed24: Waiting
+26a504e63be4: Waiting
+31892cc314cb: Waiting
+8bf42db0de72: Waiting
+aedcb370b058: Waiting
+11936051f93b: Waiting
+5f70bf18a086: Layer already exists
+7e7decd61f68: Layer already exists
+db8d0fe6cf95: Layer already exists
+00901a4c6fc7: Layer already exists
+c3a0d593ed24: Layer already exists
+aedcb370b058: Layer already exists
+26a504e63be4: Layer already exists
+8bf42db0de72: Layer already exists
+31892cc314cb: Layer already exists
+11936051f93b: Layer already exists
+6aacc61f1072: Pushed
+latest: digest: sha256:e1e1a2b8214c100403bd7354e93be25dbe52376f9edea9edbf999008eef0f326 size: 2633
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
